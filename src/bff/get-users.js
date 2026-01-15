@@ -1,0 +1,1 @@
+export const getUsers = () => fetch("http://localhost:3033/users").then((loaded) => loaded.json())
