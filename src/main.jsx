@@ -5,7 +5,7 @@ import "./index.css"
 import { BrowserRouter } from 'react-router'
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <Blog />
-  </BrowserRouter>
+    <BrowserRouter>
+      <Blog />
+    </BrowserRouter>
 )

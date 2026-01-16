@@ -1,22 +1,32 @@
 import styled from "styled-components"
 import { Routes, Route } from "react-router-dom"
+import { Header } from "./components"
 
-const Header = () => <div>Шапка</div>
 const Footer = () => <div>Футер</div>
 
+const AppColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 1000px;
+  min-height: 100%;
+  background-color: #fff;
+  margin: 0 auto;
+`
 const Content = styled.div`
+  padding: 120px 0;
+`
+const H2 = styled.h2`
   text-align: center
 `
 
-const H2 = styled.h2`
-  font-size: 25px;
-`
+
 
 function Blog() {
   return (
-    <>
-      {/* <i className="fa fa-camera-retro"></i> */}
+    <AppColumn>
       <Header />
+      {/* <i className="fa fa-camera-retro"></i> */}
       <Content>
         <H2>Контент главной страницы</H2>
 
@@ -31,7 +41,7 @@ function Blog() {
         </Routes>
       </Content>
       <Footer />
-    </>
+    </AppColumn>
   )
 }
 
