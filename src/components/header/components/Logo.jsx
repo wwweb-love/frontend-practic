@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Icon } from "../../../components"
-
+import { Link } from "react-router-dom"
 
 const TextContainer = ({ className }) => (
     <div className={className}>
@@ -25,12 +25,14 @@ const Text = styled(TextContainer)`
 `
 
 const LogoContainer = ({ className }) => (
-    <div className={className}>
-        <Icon size="70px" margin="0 10px 0 0" id="fa-code" />
-        <Text />
-    </div>
+        <Link className={className} to="/">
+            <Icon size="70px" margin="0 10px 0 0" id="fa-code" />
+            <Text />
+        </Link>
 )
 
 export const Logo = styled(LogoContainer)`
     display: flex;
+    text-decoration: none;
+    color: #000;
 `
