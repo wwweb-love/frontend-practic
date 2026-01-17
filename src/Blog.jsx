@@ -1,8 +1,6 @@
 import styled from "styled-components"
 import { Routes, Route } from "react-router-dom"
-import { Header } from "./components"
-
-const Footer = () => <div>Футер</div>
+import { Header, Footer } from "./components"
 
 const AppColumn = styled.div`
   display: flex;
