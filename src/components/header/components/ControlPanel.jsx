@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon } from "../../../components";
+import { Button, Icon } from "../../../components";
 import { Link, useNavigate } from "react-router-dom";
 
 const RightAlign = styled.div`
@@ -27,7 +27,9 @@ const ControlPanelContainer = ({ className }) => {
     return (
         <div className={className}>
             <RightAlign>
-                <StyledLink to="/login">Войти</StyledLink>
+                <Button>
+                    <Link to="/login">Войти</Link>
+                </Button>
             </RightAlign>
 
             <RightAlign>

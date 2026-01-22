@@ -1,3 +1,6 @@
 export * from "./header/Header.jsx"
 export * from "./icon/icon.jsx"
 export * from "./footer/Footer.jsx"
+export * from "./input/Input.jsx"
+export * from "./button/Button.jsx"
+export * from "./h2/h2.jsx"
