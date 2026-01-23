@@ -35,6 +35,7 @@ const StyledLink = styled(Link)`
     text-decoration: underline;
     margin: 20px 0;
     font-size: 18px;
+    
 
 `
 
