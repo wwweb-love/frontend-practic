@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import { Routes, Route } from "react-router-dom"
 import { Header } from "./components"
-
-const Footer = () => <div>Футер</div>
+import { Authorization } from "./pages"
+import { Footer } from "./components"
 
 const AppColumn = styled.div`
   display: flex;
@@ -28,11 +28,10 @@ function Blog() {
       <Header />
       {/* <i className="fa fa-camera-retro"></i> */}
       <Content>
-        <H2>Контент главной страницы</H2>
-
+        
         <Routes>
           <Route path="/" element={<h1>Главная</h1>}></Route>
-          <Route path="/login" element={<h1>login</h1>}></Route>
+          <Route path="/login" element={<Authorization />}></Route>
           <Route path="/register" element={<h1>register</h1>}></Route>
           <Route path="/users" element={<h1>users</h1>}></Route>
           <Route path="/post/:postId" element={<h1>/post/:postId</h1>}></Route>
