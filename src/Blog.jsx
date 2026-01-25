@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Routes, Route } from "react-router-dom"
 import { Header } from "./components"
-import { Authorization } from "./pages"
+import { Authorization, Registration } from "./pages"
 import { Footer } from "./components"
 
 const AppColumn = styled.div`
@@ -32,7 +32,7 @@ function Blog() {
         <Routes>
           <Route path="/" element={<h1>Главная</h1>}></Route>
           <Route path="/login" element={<Authorization />}></Route>
-          <Route path="/register" element={<h1>register</h1>}></Route>
+          <Route path="/register" element={<Registration />}></Route>
           <Route path="/users" element={<h1>users</h1>}></Route>
           <Route path="/post/:postId" element={<h1>/post/:postId</h1>}></Route>
           <Route path="/post" element={<h1>post</h1>}></Route>
