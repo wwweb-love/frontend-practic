@@ -1,3 +1,3 @@
-import { server } from "./bff"
+import { server } from "./server"
 
-export * from "./bff"
+export * from "./server"

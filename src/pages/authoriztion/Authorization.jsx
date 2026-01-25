@@ -60,13 +60,11 @@ const AuthorizationContainer = ({ className }) => {
     const dispatch = useDispatch()
 
     const onSubmit = (el) => {
-        console.log(el)
         server.authorize(el.login, el.password).then(({ res, error }) => {
             if (error) {
                 setServerError(`Ошибка запроса: ${error}`)
                 return;
             }
-
             dispatch(setUser(res))
         })
     }

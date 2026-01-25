@@ -1,4 +1,4 @@
-export const sessions = () => ({
+export const sessions = {
     list: {},
     create(user) {
         const hash = Math.random().toFixed(50)
@@ -7,7 +7,7 @@ export const sessions = () => ({
 
         return hash
     },
-    remove() {
+    remove(hash) {
         delete this.list[hash]
     }
-})
+}
