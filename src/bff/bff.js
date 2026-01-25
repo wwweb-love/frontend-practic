@@ -2,7 +2,9 @@ import { generateDate } from "./generate-date"
 import { getUser } from "./get-user"
 import { addUser } from "./add-user"
 import { createSession } from "./create-session"
-
+import { ROLE } from "../constants"
+import { sessions } from "./sessions"
+ 
 export const server = {
     async authorize(authorizeLogin, authorizePassword) {
         const user = await getUser(authorizeLogin)
@@ -23,7 +25,12 @@ export const server = {
 
         return {
             error: null,
-            res: createSession(user.role_id)
+            res: {
+                id: user.id,
+                login: user.login,
+                roleId: ROLE.GUEST,
+                session: sessions.create(user)
+            } 
         }
     },
 
@@ -41,7 +48,12 @@ export const server = {
 
         return {
             error: null,
-            res: createSession(user.role_id)
+            res: {
+                id: user.id,
+                login: user.login,
+                roleId: ROLE.GUEST,
+                session: sessions.create(user)
+            } 
         }
 
     }

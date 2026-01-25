@@ -7,6 +7,8 @@ import styled from "styled-components"
 import { Input, Button, H2 } from "../../components"
 import { Link } from "react-router-dom"
 import { forwardRef } from "react"
+import { setUser } from "../../action"
+import { useDispatch } from "react-redux"
 
 const AuthorizationSchema = yup.object().shape({
     login: yup
@@ -55,12 +57,17 @@ const AuthorizationContainer = ({ className }) => {
 
     const [serverError, setServerError] = useState()
 
+    const dispatch = useDispatch()
+
     const onSubmit = (el) => {
         console.log(el)
         server.authorize(el.login, el.password).then(({ res, error }) => {
             if (error) {
                 setServerError(`Ошибка запроса: ${error}`)
+                return;
             }
+
+            dispatch(setUser(res))
         })
     }
     const formError = errors?.login?.message || errors?.password?.message
