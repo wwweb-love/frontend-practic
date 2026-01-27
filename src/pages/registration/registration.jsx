@@ -76,6 +76,7 @@ const RegistrationContainer = ({ className }) => {
         return <Navigate to="/" />
     }
 
+    
     return (
         <div className={className}>
             <H2>Регистрация</H2>
