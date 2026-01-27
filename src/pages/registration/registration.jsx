@@ -5,13 +5,14 @@ import { server } from "../../bff";
 import { useState, useEffect } from "react";
 import { useStore } from "react-redux";
 import styled from "styled-components";
-import { Input, Button, H2 } from "../../components";
+import { Input, Button, H2, AuthFormError } from "../../components";
 import { setUser } from "../../action";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectUserRole } from "../../selectors";
 import { Navigate } from "react-router-dom";
 import { ROLE } from "../../constants";
+import { useResetForm } from "../../hooks";
 
 const registerFormSchema = yup.object().shape({
     login: yup
@@ -35,12 +36,6 @@ const registerFormSchema = yup.object().shape({
     .oneOf([yup.ref('password'), null], "Повтор пароля не совпадает")
 });
 
-const Error = styled.div`
-    background-color: #fcadad;
-    font-size: 18px;
-    padding: 10px;
-    margin: 10px 0 0 0;
-`;
 
 const RegistrationContainer = ({ className }) => {
     const {
@@ -59,24 +54,10 @@ const RegistrationContainer = ({ className }) => {
 
     const [serverError, setServerError] = useState();
     const dispatch = useDispatch();
-    const store = useStore();
 
     const roleId = useSelector(selectUserRole)
 
-
-    useEffect(() => {
-        let currentWasLogout = store.getState().app.wasLogout;
-
-        const unsubsribe = store.subscribe(() => {
-            let previosWasLogout = currentWasLogout;
-            currentWasLogout = store.getState().app.wasLogout;
-
-            if (currentWasLogout != previosWasLogout) {
-                reset();
-            }
-        });
-        return unsubsribe;
-    }, [reset, store]);
+    useResetForm(reset)
 
     const onSubmit = (el) => {
         server.register(el.login, el.password).then(({ res, error }) => {
@@ -87,6 +68,7 @@ const RegistrationContainer = ({ className }) => {
             dispatch(setUser(res));
         });
     };
+    
     const formError = errors?.login?.message || errors?.password?.message || errors?.passcheck?.message;
     const errorMessage = formError || serverError;
 
@@ -125,7 +107,7 @@ const RegistrationContainer = ({ className }) => {
                     Зарегистрироваться 
                 </Button>
 
-                {errorMessage && <Error>{errorMessage}</Error>}
+                {errorMessage && <AuthFormError>{errorMessage}</AuthFormError>}
             </form>
         </div>
     );

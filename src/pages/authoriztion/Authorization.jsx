@@ -3,11 +3,10 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { server } from "../../bff";
 import { useState, useEffect } from "react";
-import { useStore } from "react-redux";
 import styled from "styled-components";
-import { Input, Button, H2 } from "../../components";
+import { Input, Button, H2, AuthFormError } from "../../components";
+import { useResetForm } from "../../hooks";
 import { Link } from "react-router-dom";
-import { forwardRef } from "react";
 import { setUser } from "../../action";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -33,13 +32,6 @@ const AuthorizationSchema = yup.object().shape({
         .max(30, "Неверно заполнен пароль. Максимум 30 символов"),
 });
 
-const Error = styled.div`
-    background-color: #fcadad;
-    font-size: 18px;
-    padding: 10px;
-    margin: 10px 0 0 0;
-`;
-
 const StyledLink = styled(Link)`
     text-align: center;
     text-decoration: underline;
@@ -63,24 +55,11 @@ const AuthorizationContainer = ({ className }) => {
 
     const [serverError, setServerError] = useState();
     const dispatch = useDispatch();
-    const store = useStore();
 
     const roleId = useSelector(selectUserRole)
 
 
-    useEffect(() => {
-        let currentWasLogout = store.getState().app.wasLogout;
-
-        const unsubsribe = store.subscribe(() => {
-            let previosWasLogout = currentWasLogout;
-            currentWasLogout = store.getState().app.wasLogout;
-
-            if (currentWasLogout != previosWasLogout) {
-                reset();
-            }
-        });
-        return unsubsribe;
-    }, [reset, store]);
+    useResetForm(reset)
 
     const onSubmit = (el) => {
         server.authorize(el.login, el.password).then(({ res, error }) => {
@@ -121,7 +100,7 @@ const AuthorizationContainer = ({ className }) => {
                     Авторизоваться
                 </Button>
 
-                {errorMessage && <Error>{errorMessage}</Error>}
+                {errorMessage && <AuthFormError>{errorMessage}</AuthFormError>}
 
                 <StyledLink to="/register">Регистрация</StyledLink>
             </form>
