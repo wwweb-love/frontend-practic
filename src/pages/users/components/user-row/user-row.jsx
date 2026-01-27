@@ -1,18 +1,24 @@
 import styled from "styled-components";
-import { Icon } from "../../components";
+import { Icon } from "../../../../components";
 import { useDispatch } from "react-redux";
 import { ROLE } from "../../../../constants";
+import { TableRow } from "../table-row/table-row";
 
-const userRowContainer = ({ className, login, registredAt, roleId: userRoleId  }) => {
-    const dispatch = useDispatch()
+const userRowContainer = ({
+    className,
+    login,
+    registredAt,
+    roleId: userRoleId,
+}) => {
+    const dispatch = useDispatch();
 
-    const roles = []
+    const roles = [];
 
     const onRoleChange = () => {};
 
     return (
         <div className={className}>
-            <div className="user-data">
+            <TableRow>
                 <div className="login-column">{login}</div>
                 <div className="regitrd-at-column">{registredAt}</div>
                 <div className="role-column">
@@ -27,7 +33,7 @@ const userRowContainer = ({ className, login, registredAt, roleId: userRoleId  }
                         onClick={() => dispatch(/* TODO */)}
                     ></Icon>
                 </div>
-            </div>
+            </TableRow>
             <Icon
                 id="fa-trash-o"
                 margin="0 0 0 10px"
@@ -37,4 +43,4 @@ const userRowContainer = ({ className, login, registredAt, roleId: userRoleId  }
     );
 };
 
-export const UserRow = styled(userRowContainer)``
+export const UserRow = styled(userRowContainer)``;
