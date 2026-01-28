@@ -13,7 +13,7 @@ const AppColumn = styled.div`
   background-color: #fff;
   margin: 0 auto;
 `
-const Content = styled.div`
+const Page = styled.div`
   padding: 120px 0;
   margin: 0 auto;
 `
@@ -23,7 +23,7 @@ function Blog() {
     <AppColumn>
       <Header />
       {/* <i className="fa fa-camera-retro"></i> */}
-      <Content>
+      <Page>
         
         <Routes>
           <Route path="/" element={<h1>Главная</h1>}></Route>
@@ -34,7 +34,7 @@ function Blog() {
           <Route path="/post" element={<h1>post</h1>}></Route>
           <Route path="*" element={<h1>Error</h1>}></Route>
         </Routes>
-      </Content>
+      </Page>
       <Footer />
     </AppColumn>
   )

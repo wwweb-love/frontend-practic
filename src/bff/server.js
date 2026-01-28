@@ -1,62 +1,7 @@
-import { getUser } from "./get-user"
-import { addUser } from "./add-user"
-import { ROLE } from "../constants"
-import { sessions } from "./sessions"
- 
+import { authorize, register, logout } from "./operations"
+
 export const server = {
-    async logout(session) {
-        sessions.remove(session)
-    },
-
-    async authorize(authorizeLogin, authorizePassword) {
-        const user = await getUser(authorizeLogin)
-
-        if (!user) {
-            return {
-                error: "Такой пользователь не найден",
-                res: null
-            }
-        }
-
-        if (authorizePassword !== user.password) {
-            return {
-                error: "Не верный пароль",
-                res: null
-            }
-        }
-
-        return {
-            error: null,
-            res: {
-                id: user.id,
-                login: user.login,
-                roleId: user.role_id,
-                session: sessions.create(user)
-            } 
-        }
-    },
-
-    async register(registerLogin, registerPassword) {
-        const existedUser = await getUser(registerLogin)
-
-        if (existedUser) {
-            return {
-                error: "Такой логин уже используется",
-                res: null
-            }
-        }
-
-        const user = await addUser(registerLogin, registerPassword)
-        return {
-            error: null,
-            res: {
-                id: user.id,
-                login: user.login,
-                roleId: ROLE.GUEST,
-                session: sessions.create(user)
-            } 
-        }
-
-    }
-
+    authorize,
+    register,
+    logout
 }
