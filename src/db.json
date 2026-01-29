@@ -6,6 +6,13 @@
       "password": "qwerty123",
       "registed_at": "2026-01-12",
       "role_id": 0
+    },
+    {
+      "id": "2eb3",
+      "login": "anton",
+      "password": "qwerty123",
+      "registed_at": "2049-12-04 22:31",
+      "role_id": 2
     }
   ],
   "roles": [
