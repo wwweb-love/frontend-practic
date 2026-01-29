@@ -9,7 +9,7 @@ const UsersContainer = ({ className }) => {
     const [users, setUsers] = useState([]);
     const [roles, setRoles] = useState([]);
     const [errorMessage, setErrorMessage] = useState(null);
-
+    const [shouldUpdateUserList, setShouldUpdateUserList] = useState(false);
     const reqeustServer = useServerRequest();
     useEffect(() => {
         Promise.all([
@@ -23,7 +23,12 @@ const UsersContainer = ({ className }) => {
             setUsers(usersRes.res);
             setRoles(rolesRes.res);
         });
-    }, [reqeustServer]);
+    }, [reqeustServer, shouldUpdateUserList]);
+
+    const onUserRemove = (userId) =>
+        reqeustServer("removeUser", userId).then(() =>
+            setShouldUpdateUserList(!shouldUpdateUserList),
+        );
 
     return (
         <div className={className}>
@@ -46,7 +51,10 @@ const UsersContainer = ({ className }) => {
                             login={login}
                             registedAt={registedAt}
                             roleId={roleId}
-                            roles={roles.filter(({id: roleId}) => roleId != ROLE.GUEST)}
+                            roles={roles.filter(
+                                ({ id: roleId }) => roleId != ROLE.GUEST,
+                            )}
+                            onUserRemove={() => onUserRemove(id)}
                         />
                     ))}
                 </div>

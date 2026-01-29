@@ -1,5 +1,6 @@
 import { addUser, getUser } from "../api"
 import { sessions } from "../sessions"
+import { ROLE } from "../constants"
 
 export const register = async (registerLogin, registerPassword) => {
         const existedUser = await getUser(registerLogin)
@@ -12,12 +13,13 @@ export const register = async (registerLogin, registerPassword) => {
         }
 
         const user = await addUser(registerLogin, registerPassword)
+
         return {
             error: null,
             res: {
                 id: user.id,
                 login: user.login,
-                roleId: ROLE.GUEST,
+                roleId: user.roleId,
                 session: sessions.create(user)
             } 
         }

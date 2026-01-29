@@ -14,6 +14,7 @@ const userRowContainer = ({
     registedAt,
     roleId: userRoleId,
     roles,
+    onUserRemove
 }) => {
     const reqeustServer = useServerRequest()
 
@@ -59,7 +60,7 @@ const userRowContainer = ({
                     </div>
                 </div>
             </TableRow>
-            <Icon id="fa-trash-o" onClick={() => {}}></Icon>
+            <Icon id="fa-trash-o" onClick={onUserRemove}></Icon>
         </div>
     );
 };
