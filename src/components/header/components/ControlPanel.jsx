@@ -15,25 +15,6 @@ const RightAlign = styled.div`
     align-items: center;
 `;
 
-const StyledLink = styled(Link)`
-    cursor: pointer;
-    font-size: 18px;
-    width: 100px;
-    height: 32px;
-    border: 1px solid #000;
-    background-color: #eee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const StyledBackIcon = styled.div`
-    &:hover {
-        cursor: pointer;
-    }
-`;
-
-
 const UserName = styled.div`
     font-size: 18px;
     wont-weight: bold;
@@ -69,9 +50,7 @@ const ControlPanelContainer = ({ className }) => {
             </RightAlign>
 
             <RightAlign>
-                <StyledBackIcon onClick={() => navigate(-1)}>
-                    <Icon id="fa-backward" margin="10px 0 0 0" />
-                </StyledBackIcon>
+                    <Icon onClick={() => navigate(-1)} id="fa-backward" margin="10px 0 0 0" />
                 <Link to="/post">
                     <Icon id="fa-file-text-o" margin="10px 0 0 16px" />
                 </Link>
