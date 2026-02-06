@@ -26,5 +26,5 @@
 
 - user: { id, login, roleId }
 - posts: [ { id, title,imageUrl, publishedAt, commentsCount } ]
-- post: { id, title, imageUrl, content, publishedAt, cpmments: [id, author, content, publishedAt ] }
+- post: { id, title, imageUrl, content, publishedAt, comments: [id, author, content, publishedAt ] }
 - users: [ { id, login, registredAt, role } ]

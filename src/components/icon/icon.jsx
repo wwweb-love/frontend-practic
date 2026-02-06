@@ -8,8 +8,9 @@ const IconContainer = ({className, id, disabled, ...props}) => (
 
 
 export const Icon = styled(IconContainer)`
+    width: auto;
+    height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     font-size: ${({size = "24px"}) => size};
     margin: ${({margin = "0"}) => margin};
