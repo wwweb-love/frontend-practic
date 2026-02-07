@@ -3,6 +3,9 @@ import { Routes, Route } from "react-router-dom"
 import { Header } from "./components"
 import { Authorization, Registration, Users, Post } from "./pages"
 import { Footer } from "./components"
+import { useLayoutEffect } from "react"
+import { useDispatch } from "react-redux"
+import { setUser } from "./action"
 
 const AppColumn = styled.div`
   display: flex;
@@ -19,12 +22,27 @@ const Page = styled.div`
 `
 
 function Blog() {
+  const dispatch = useDispatch()
+
+  useLayoutEffect(() => {
+    const currentUserDataJSON = sessionStorage.getItem('userData')
+
+    if (!currentUserDataJSON) {
+      return ;
+    }
+    const currentUserData = JSON.parse(currentUserDataJSON)
+    dispatch(setUser({
+      ...currentUserData,
+      roleId: Number(currentUserData.roleId)
+    }))
+  }, [dispatch])
+
   return (
     <AppColumn>
       <Header />
       {/* <i className="fa fa-camera-retro"></i> */}
       <Page>
-        
+
         <Routes>
           <Route path="/" element={<h1>Главная</h1>}></Route>
           <Route path="/login" element={<Authorization />}></Route>

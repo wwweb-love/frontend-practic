@@ -21,7 +21,7 @@ const PageContainer = ({ className }) => {
     return (
         <div className={className}>
             <PostContent post={post}/>
-            <Comments comments={post.comments} />
+            <Comments comments={post.comments} postId={post.id}/>
         </div>
     )
 }

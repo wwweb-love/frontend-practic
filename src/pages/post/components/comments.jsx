@@ -2,16 +2,28 @@ import styled from "styled-components"
 import { Icon } from "../../../components"
 import { Comment } from "./components"
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { selectUserId } from "../../../selectors"
+import { useServerRequest } from "../../../hooks"
+import {addCommentAsync} from "../../../action"
 
-const CommentsContainer = ({ className, comments }) => {
+const CommentsContainer = ({ className, comments, postId }) => {
 
     const [newComment, setNewComment] = useState('')
     // const { id, author, content, publishedAt } = comments
+    const dispatch = useDispatch()
+    const serverRequest = useServerRequest()
+
+    const userId = useSelector(selectUserId)
+
+    const onNewAddComment = (userId, postId, content) => {
+        dispatch(addCommentAsync(serverRequest, userId, postId, content))
+    }
     return (
         <div className={className}>
             <div className="new-comment">
                 <textarea value={newComment} placeholder="Комментарий..." onChange={(e) => setNewComment(e.target.value)}></textarea>
-                <Icon id="fa-paper-plane-o" margin="0 0 0 10px" onClick={() => { }} />
+                <Icon id="fa-paper-plane-o" margin="0 0 0 10px" onClick={() => onNewAddComment(userId, postId, newComment)} />
             </div>
             <div className="comments">
                 {/* <Comment key={0} id={0} author={"author"} content={"content"} publishedAt={"publishedAt"} /> */}
