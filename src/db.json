@@ -8,17 +8,17 @@
       "role_id": 0
     },
     {
-      "id": "16be",
-      "login": "testof2",
-      "password": "qweqweqwe",
-      "registed_at": "2040-06-16 22:26",
-      "role_id": 2
-    },
-    {
       "id": "aa83",
       "login": "test",
       "password": "Hjvfytyrj21",
       "registed_at": "2050-11-27 13:35",
+      "role_id": 1
+    },
+    {
+      "id": "734b",
+      "login": "roman2",
+      "password": "qwerty123",
+      "registed_at": "2041-09-16 00:23",
       "role_id": 1
     }
   ],
@@ -72,11 +72,32 @@
   ],
   "comments": [
     {
-      "id": "6bb1",
+      "id": "f293",
       "author_id": "001",
       "post_id": "001",
-      "published_at": "2063-11-27 04:55",
-      "content": "213 1233 23 323 32 3 23 32"
+      "published_at": "2047-05-03 06:16",
+      "content": "Roman comments\n"
+    },
+    {
+      "id": "40c6",
+      "author_id": "001",
+      "post_id": "001",
+      "published_at": "2040-03-11 03:58",
+      "content": "Romna"
+    },
+    {
+      "id": "5e3e",
+      "author_id": "734b",
+      "post_id": "001",
+      "published_at": "2057-08-14 20:21",
+      "content": "123"
+    },
+    {
+      "id": "3066",
+      "author_id": "734b",
+      "post_id": "001",
+      "published_at": "2055-07-06 15:41",
+      "content": "123"
     }
   ],
   "sessions": [
@@ -89,6 +110,17 @@
         "password": "qwerty123",
         "registedAt": "2026-01-12",
         "roleId": 0
+      }
+    },
+    {
+      "id": "d9eb",
+      "hash": "0.86083372573822047879588126306771300733089447021484",
+      "user": {
+        "id": "734b",
+        "login": "roman2",
+        "password": "qwerty123",
+        "registedAt": "2041-09-16 00:23",
+        "roleId": 1
       }
     }
   ]

@@ -18,12 +18,14 @@ const CommentsContainer = ({ className, comments, postId }) => {
 
     const onNewAddComment = (userId, postId, content) => {
         dispatch(addCommentAsync(serverRequest, userId, postId, content))
+        setNewComment('')
     }
     return (
         <div className={className}>
+            
             <div className="new-comment">
                 <textarea value={newComment} placeholder="Комментарий..." onChange={(e) => setNewComment(e.target.value)}></textarea>
-                <Icon id="fa-paper-plane-o" margin="0 0 0 10px" onClick={() => onNewAddComment(userId, postId, newComment)} />
+                <Icon id="fa-paper-plane-o" onClick={() => onNewAddComment(userId, postId, newComment)} />
             </div>
             <div className="comments">
                 {/* <Comment key={0} id={0} author={"author"} content={"content"} publishedAt={"publishedAt"} /> */}
@@ -38,17 +40,22 @@ const CommentsContainer = ({ className, comments, postId }) => {
 
 export const Comments = styled(CommentsContainer)`
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: space-around;
     width: 580px;
     margin: 0px auto;
     
     & .new-comment {
         width: 100%;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin: 20px 0 0;
     }
 
     & textarea {
-        width: 100%;
+        width: 550px;
         height: 120px;
         resize: none;
         font-size: 18px;
