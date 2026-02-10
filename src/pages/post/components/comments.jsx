@@ -5,7 +5,7 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { selectUserId } from "../../../selectors"
 import { useServerRequest } from "../../../hooks"
-import {addCommentAsync} from "../../../action"
+import { addCommentAsync } from "../../../action"
 
 const CommentsContainer = ({ className, comments, postId }) => {
 
@@ -20,9 +20,10 @@ const CommentsContainer = ({ className, comments, postId }) => {
         dispatch(addCommentAsync(serverRequest, userId, postId, content))
         setNewComment('')
     }
+
     return (
         <div className={className}>
-            
+
             <div className="new-comment">
                 <textarea value={newComment} placeholder="Комментарий..." onChange={(e) => setNewComment(e.target.value)}></textarea>
                 <Icon id="fa-paper-plane-o" onClick={() => onNewAddComment(userId, postId, newComment)} />
@@ -31,7 +32,7 @@ const CommentsContainer = ({ className, comments, postId }) => {
                 {/* <Comment key={0} id={0} author={"author"} content={"content"} publishedAt={"publishedAt"} /> */}
 
                 {comments.map(({ id, author, content, publishedAt }) => (
-                    <Comment key={id} id={id} author={author} content={content} publishedAt={publishedAt} />
+                    <Comment key={id} id={id} author={author} content={content} publishedAt={publishedAt} postId={postId} />
                 ))}
             </div>
         </div>

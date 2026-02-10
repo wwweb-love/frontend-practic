@@ -1,7 +1,18 @@
 import styled from "styled-components"
 import { Icon } from "../../../../components"
+import { useDispatch } from "react-redux"
+import { removeCommentAsync } from "../../../../action"
+import { useServerRequest } from "../../../../hooks"
 
-const CommentContainer = ({ className, id, author, content, publishedAt }) => {
+const CommentContainer = ({ className, id, author, content, publishedAt, postId }) => {
+
+    const dispatch = useDispatch()
+    const serverRequest = useServerRequest()
+
+    const onCommentRemove = (id) => {
+            dispatch(removeCommentAsync(serverRequest, postId, id))
+        }
+
     return (
         <div className={className}>
             <div className="comment">
@@ -15,7 +26,7 @@ const CommentContainer = ({ className, id, author, content, publishedAt }) => {
                 </div>
                 <div className="comment-text">{content}</div>
             </div>
-            <Icon id="fa-trash-o" onClick={() => { }} />
+            <Icon id="fa-trash-o" onClick={() => onCommentRemove(id)} />
 
         </div>
     )
