@@ -2,6 +2,12 @@ import { ACTION_TYPE } from "../action"
 
 const initialAppState = {
     wasLogout: false,
+    modal: {
+        isOpen: true,
+        text: "Удалить комментарий?",
+        onConfirm: () => {},
+        onCancel: () => {},
+    }
 }
 
 export const appReducer = (state = initialAppState, action) => {

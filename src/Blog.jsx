@@ -6,6 +6,7 @@ import { Footer } from "./components"
 import { useLayoutEffect } from "react"
 import { useDispatch } from "react-redux"
 import { setUser } from "./action"
+import { Modal } from "./components"
 
 const AppColumn = styled.div`
   display: flex;
@@ -54,6 +55,7 @@ function Blog() {
         </Routes>
       </Page>
       <Footer />
+      <Modal />
     </AppColumn>
   )
 }
