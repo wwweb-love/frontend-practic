@@ -60,6 +60,7 @@ export const Comments = styled(CommentsContainer)`
         height: 120px;
         resize: none;
         font-size: 18px;
+        padding: 10px;
     }
 
     

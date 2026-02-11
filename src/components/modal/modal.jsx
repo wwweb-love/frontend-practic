@@ -9,12 +9,10 @@ const ModalContainer = ({ className }) => {
     const onConfirm = useSelector(selectModalOnConfirm)
     const onCancel = useSelector(selectModalOnCancel)
 
-    
+
     if (!isOpen) {
-        console.log("No")
         return null
     }
-    console.log("Yes")
 
 
     return (

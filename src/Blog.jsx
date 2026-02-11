@@ -50,6 +50,7 @@ function Blog() {
           <Route path="/register" element={<Registration />}></Route>
           <Route path="/users" element={<Users />}></Route>
           <Route path="/post/:id" element={<Post />}></Route>
+          <Route path="/post/:id/edit" element={<Post />}></Route>
           <Route path="/post" element={<h1>post</h1>}></Route>
           <Route path="*" element={<h1>Error</h1>}></Route>
         </Routes>
