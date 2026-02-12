@@ -1,28 +1,34 @@
 import styled from "styled-components"
 import { H2, Icon, Input } from "../../../components"
+import { SpecialPanel } from "./special-panel"
+import { useRef } from "react"
+import { sanitizeContent } from "./utils/sanitize-content"
 
 const PostFormContainer = ({ className, post: { id, title, content, publishedAt, imageUrl } }) => {
-    console.log("isEditing")
+
+    const imageRef = useRef(null)
+    const titleRef = useRef(null)
+    const contentRef = useRef(null)
+
+    const onSave = () => {
+        const newImageUrl = imageRef.current.value
+        const newTitleUrl = titleRef.current.value
+        const newContentUrl = sanitizeContent(contentRef.current.innerHTML)
+
+
+
+        console.log(newImageUrl, newTitleUrl, newContentUrl)
+    }
 
     return (<div className={className}>
-        <Input defaultValue={imageUrl} />
-        <Input defaultValue={title} />
+        <Input ref={imageRef} defaultValue={imageUrl} placeholder="Изображение..." />
+        <Input ref={titleRef} defaultValue={title} placeholder="Заголовок..." />
 
         {/* <img src={imageUrl ? imageUrl : null} alt={title} /> */}
         {/* <H2>{title}</H2> */}
 
-        <div className="special-panel">
-            <div className="published-at">
-                <Icon id="fa-calendar-o" margin="0 7px 0 0" onClick={() => { }} />
-                <div className="published-at-year">{publishedAt}</div>
-            </div>
-
-            <div className="buttons">
-                <Icon id="fa-floppy-o" margin="0 7px 0 0" onClick={() => { }} />
-                <Icon id="fa-trash-o" margin="0 7px 0 0" onClick={() => { }} />
-            </div>
-        </div>
-        <div contentEditable={true} suppressContentEditableWarning={true} className="post-text">{content}</div>
+        <SpecialPanel publishedAt={publishedAt} margin={"20px 0"} editButton={<Icon id="fa-floppy-o" margin="0 7px 0 0" onClick={onSave} />} />
+        <div ref={contentRef} contentEditable={true} suppressContentEditableWarning={true} className="post-text">{content}</div>
     </div>)
 }
 
@@ -30,39 +36,6 @@ export const PostForm = styled(PostFormContainer)`
 
     display: flex;
     flex-direction: column;
-
-    & img {
-        float: left;
-        margin: 0 20px 10px 0;
-    }
-
-    & .special-panel {
-        display: flex;
-        justify-content: space-between;
-        margin: 20px 0;
-        font-size: 20px;
-        height: 100%;
-    }
-
-    & .published-at {
-        display: flex;
-        gap: 10px;
-    }
-
-    & .published-at-year {
-        display: flex;
-        white-space: nowrap;
-    }
-
-    & i {
-        position: relative;
-        // font-size: 20px;
-        top: -1px;
-    }
-
-    & .buttons {
-        display: flex;
-    }
 
     & .post-text {
         font-size: 18px;
