@@ -3,6 +3,10 @@ import { H2, Icon, Input } from "../../../components"
 import { SpecialPanel } from "./special-panel"
 import { useRef } from "react"
 import { sanitizeContent } from "./utils/sanitize-content"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router"
+import { savePostAsync } from "../../../action"
+import {useServerRequest} from "../../../hooks"
 
 const PostFormContainer = ({ className, post: { id, title, content, publishedAt, imageUrl } }) => {
 
@@ -10,14 +14,22 @@ const PostFormContainer = ({ className, post: { id, title, content, publishedAt,
     const titleRef = useRef(null)
     const contentRef = useRef(null)
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const serverRequest = useServerRequest()
+
     const onSave = () => {
         const newImageUrl = imageRef.current.value
-        const newTitleUrl = titleRef.current.value
-        const newContentUrl = sanitizeContent(contentRef.current.innerHTML)
+        const newTitle = titleRef.current.value
+        const newContent = sanitizeContent(contentRef.current.innerHTML)
 
 
-
-        console.log(newImageUrl, newTitleUrl, newContentUrl)
+        dispatch(savePostAsync(serverRequest, {
+            id,
+            imageUrl: newImageUrl,
+            title: newTitle,
+            content: newContent
+        })).then(() => navigate(`/post/${id}`))
     }
 
     return (<div className={className}>

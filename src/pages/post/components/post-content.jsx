@@ -1,15 +1,16 @@
 import styled from "styled-components"
 import { H2, Icon } from "../../../components"
 import { SpecialPanel } from "./special-panel"
+import { useNavigate } from "react-router"
 
 const PostContentContainer = ({className, post: { id, title, content, publishedAt, imageUrl } }) => {
-
+    const navigate = useNavigate()
     return (<div className={className}>
         <img src={imageUrl ? imageUrl : null} alt={title} />
 
         <H2>{title}</H2>
 
-        <SpecialPanel publishedAt={publishedAt} margin={"-20px 0 20px"} editButton={<Icon id="fa-pencil-square-o" margin="0 7px 0 0" onClick={() => { }} />} />
+        <SpecialPanel publishedAt={publishedAt} margin={"-20px 0 20px"} editButton={<Icon id="fa-pencil-square-o" margin="0 7px 0 0" onClick={() => navigate(`/post/${id}/edit`)} />} />
         <div className="post-text">{content}</div>
     </div>)
 }
