@@ -10,7 +10,7 @@ const PostContentContainer = ({className, post: { id, title, content, publishedA
 
         <H2>{title}</H2>
 
-        <SpecialPanel publishedAt={publishedAt} margin={"-20px 0 20px"} editButton={<Icon id="fa-pencil-square-o" margin="0 7px 0 0" onClick={() => navigate(`/post/${id}/edit`)} />} />
+        <SpecialPanel id={id} publishedAt={publishedAt} margin={"-20px 0 20px"} editButton={<Icon id="fa-pencil-square-o" margin="0 7px 0 0" onClick={() => navigate(`/post/${id}/edit`)} />} />
         <div className="post-text">{content}</div>
     </div>)
 }

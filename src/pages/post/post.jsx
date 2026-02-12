@@ -1,12 +1,13 @@
-import { useEffect } from "react"
+import { useEffect, useLayoutEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, useMatch } from "react-router"
 import styled from "styled-components"
-import { loadPostAsync } from "../../action"
+import { loadPostAsync, RESET_POST_DATA } from "../../action"
 import { selectPost } from "../../selectors"
 import { useServerRequest } from "../../hooks"
 import { PostContent, Comments } from "./components"
 import { PostForm } from "./components/post-form"
+
 
 const PageContainer = ({ className }) => {
 
@@ -15,6 +16,10 @@ const PageContainer = ({ className }) => {
     const requestServer = useServerRequest()
     const params = useParams()
     const isEditing = useMatch('/post/:id/edit')
+
+    useLayoutEffect(() => {
+        dispatch(RESET_POST_DATA)
+    }, [dispatch])
 
     useEffect(() => {
         dispatch(loadPostAsync(requestServer, params.id))

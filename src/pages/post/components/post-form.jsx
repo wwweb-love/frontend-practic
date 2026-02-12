@@ -39,7 +39,7 @@ const PostFormContainer = ({ className, post: { id, title, content, publishedAt,
         {/* <img src={imageUrl ? imageUrl : null} alt={title} /> */}
         {/* <H2>{title}</H2> */}
 
-        <SpecialPanel publishedAt={publishedAt} margin={"20px 0"} editButton={<Icon id="fa-floppy-o" margin="0 7px 0 0" onClick={onSave} />} />
+        <SpecialPanel id={id} publishedAt={publishedAt} margin={"20px 0"} editButton={<Icon id="fa-floppy-o" margin="0 7px 0 0" onClick={onSave} />} />
         <div ref={contentRef} contentEditable={true} suppressContentEditableWarning={true} className="post-text">{content}</div>
     </div>)
 }
