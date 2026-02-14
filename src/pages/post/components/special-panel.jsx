@@ -28,13 +28,13 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
         <div className={className}>
             <div className="special-panel">
                 <div className="published-at">
-                    <Icon id="fa-calendar-o" margin="0 7px 0 0" />
+                    {publishedAt && <Icon id="fa-calendar-o" margin="0 7px 0 0" inactive={"true"} />}
                     <div className="published-at-year">{publishedAt}</div>
                 </div>
 
                 <div className="buttons">
                     {editButton}
-                    <Icon id="fa-trash-o" margin="0 7px 0 0" onClick={() => onPostRemove(id)} />
+                    {publishedAt && <Icon id="fa-trash-o" margin="0 7px 0 0" onClick={() => onPostRemove(id)} />}
                 </div>
             </div>
         </div>

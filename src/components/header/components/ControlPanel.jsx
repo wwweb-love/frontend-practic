@@ -9,6 +9,8 @@ import {
     selectUserSession,
 } from "../../../selectors";
 import { logout } from "./../../../action";
+import { RESET_POST_DATA } from "./../../../action";
+
 const RightAlign = styled.div`
     display: flex;
     justify-content: flex-end;
