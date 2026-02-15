@@ -2,18 +2,22 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { PostCard } from "./components";
 import { useServerRequest } from "../../hooks";
+import { PAGINATION_LIMIT } from "../../constants";
+import { Pagination } from "./components/pagination";
 
 const MainContainer = ({ className }) => {
     const [posts, setPosts] = useState([]);
+    const [page, setPage] = useState(1);
+    const [lastPage, setLastPage] = useState(1)
     const requestServer = useServerRequest();
 
     useEffect(() => {
-        requestServer(`fetchPosts`).then((posts) => {
+        requestServer(`fetchPosts`, page, PAGINATION_LIMIT).then((posts) => {
             setPosts(posts.res);
+            setLastPage(2)
         });
-    }, [requestServer]);
+    }, [requestServer, page]);
 
-    console.log(posts);
 
     return (
         <div className={className}>
@@ -31,6 +35,8 @@ const MainContainer = ({ className }) => {
                     ),
                 )}
             </div>
+            {lastPage !== 1 && <Pagination lastPage={lastPage} setLastPage={setLastPage} page={page} setPage={setPage} />}
+            
         </div>
     );
 };
@@ -40,7 +46,5 @@ export const Main = styled(MainContainer)`
         display: flex;
         flex-wrap: wrap;
         padding: 20px;
-        }
-
-
+    }
 `;

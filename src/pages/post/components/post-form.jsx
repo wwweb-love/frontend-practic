@@ -33,7 +33,6 @@ const PostFormContainer = ({
                 content: newContent,
             }),
         ).then(({ id }) => {
-            console.log("id", id)
             navigate(`/post/${id}`);
         });
     };

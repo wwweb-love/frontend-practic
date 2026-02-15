@@ -10,7 +10,6 @@ const PostCardContainer = ({
     publishedAt,
     commentsCount,
 }) => {
-    console.log(imageUrl);
     return (
         <div className={className}>
             <Link to={`/post/${id}`}>
