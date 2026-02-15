@@ -5,7 +5,7 @@ import { useServerRequest } from "../../hooks";
 
 const MainContainer = ({ className }) => {
     const [posts, setPosts] = useState([]);
-    const requestServer = useServerRequest()
+    const requestServer = useServerRequest();
 
     useEffect(() => {
         requestServer(`fetchPosts`).then((posts) => {
@@ -13,21 +13,34 @@ const MainContainer = ({ className }) => {
         });
     }, [requestServer]);
 
-    console.log(posts)
+    console.log(posts);
 
     return (
         <div className={className}>
-            {posts.map(({ id, title, publishedAt, commentsCount }) => (
-                <PostCard
-                    key={id}
-                    id={id}
-                    title={title}
-                    publishedAt={publishedAt}
-                    commentsCount={commentsCount}
-                />
-            ))}
+            <div className="post-list">
+                {posts.map(
+                    ({ id, title, publishedAt, imageUrl, commentsCount }) => (
+                        <PostCard
+                            key={id}
+                            id={id}
+                            title={title}
+                            publishedAt={publishedAt}
+                            commentsCount={commentsCount}
+                            imageUrl={imageUrl}
+                        />
+                    ),
+                )}
+            </div>
         </div>
     );
 };
 
-export const Main = styled(MainContainer)``;
+export const Main = styled(MainContainer)`
+    .post-list {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px;
+        }
+
+
+`;
