@@ -17,14 +17,10 @@ const MainContainer = ({ className }) => {
     const requestServer = useServerRequest();
 
     useEffect(() => {
-        console.log(searchPhrase)
 
         requestServer(`fetchPosts`, searchPhrase, page, PAGINATION_LIMIT).then(({ res: { posts, links } }) => {
-            console.log("posts", posts)
-
             setPosts(posts);
-
-            setLastPage(links)
+            setLastPage(Math.ceil(links / PAGINATION_LIMIT))
         });
     }, [requestServer, page, shouldSearch]);
 
@@ -53,13 +49,14 @@ const MainContainer = ({ className }) => {
                     ),
                 )}
             </div> : <div className="no-posts-found">Статьи не найдены</div>}
-            {lastPage !== 1 && <Pagination lastPage={lastPage} setLastPage={setLastPage} page={page} setPage={setPage} />}
+            {posts.length != 0  && <Pagination lastPage={lastPage} setLastPage={setLastPage} page={page} setPage={setPage} />}
 
         </div>
     );
 };
 
 export const Main = styled(MainContainer)`
+
     .post-list {
         display: flex;
         flex-wrap: wrap;

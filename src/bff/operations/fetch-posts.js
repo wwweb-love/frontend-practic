@@ -4,7 +4,6 @@ import { getCommentsCount } from "../utils";
 export const fetchPosts = async (searchPhrase, page, limit) => {
 
     const [{ posts, links }, comments] = await Promise.all([getPosts(searchPhrase, page, limit), getComments()])
-    console.log("POSTSSTTSTSST", posts)
     return {
         error: null,
         res: {
