@@ -2,7 +2,6 @@ import styled from "styled-components"
 import { Button } from "../../../components"
 
 const PaginationContainer = ({className, setPage, page, lastPage, setLastPage}) => {
-    console.log(page)
     return (
         <div className={className}>
             <Button disabled={page === 1} onClick={() => setPage(1)}>В начало</Button>
