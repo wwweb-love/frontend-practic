@@ -1,3 +1,3 @@
-import { server } from "./server"
+import * as server from "./operations"
 
-export * from "./server"
+export { server }

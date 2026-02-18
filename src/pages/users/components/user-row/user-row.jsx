@@ -60,7 +60,7 @@ const userRowContainer = ({
                     </div>
                 </div>
             </TableRow>
-            <Icon id="fa-trash-o" onClick={onUserRemove}></Icon>
+            <Icon id="fa-trash-o" onClick={onUserRemove} ></Icon>
         </div>
     );
 };

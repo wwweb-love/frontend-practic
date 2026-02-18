@@ -1,15 +1,17 @@
 import styled from "styled-components"
 
-const IconContainer = ({className, id, disabled, ...props}) => (
+const IconContainer = ({className, id, disabled, ...props}) => {
+    return (
     <div className={className} {...props}>
         <i className={`fa ${id}`} aria-hidden="true"></i>
     </div>
-)
+)}
 
 
 export const Icon = styled(IconContainer)`
+    width: auto;
+    height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     font-size: ${({size = "24px"}) => size};
     margin: ${({margin = "0"}) => margin};
@@ -17,7 +19,7 @@ export const Icon = styled(IconContainer)`
     color: ${({disabled}) => disabled ? "#ccc" : "#000"};
 
     &:hover {
-        cursor: pointer;
+        cursor: ${({inactive}) => inactive ? "default" : "pointer"};
     }
 `
 
