@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useMatch } from "react-router";
 import styled from "styled-components";
 import { loadPostAsync, RESET_POST_DATA } from "../../action";
-import { selectPost } from "../../selectors";
+import { selectPost, selectUserRole } from "../../selectors";
 import { useServerRequest } from "../../hooks";
 import { PostContent, Comments } from "./components";
 import { PostForm } from "./components/post-form";
 import { Content } from "../../components";
+import { checkAccess } from "../../utils/check-access";
+import { ROLE } from "../../constants";
 
 const PageContainer = ({ className }) => {
     const dispatch = useDispatch();
@@ -16,9 +18,11 @@ const PageContainer = ({ className }) => {
     const isCreating = useMatch("/post/");
     const isEditing = useMatch("/post/:id/edit");
     const post = useSelector(selectPost);
-    const [error, setError] = useState(true);
+    const [error, setError] = useState("Нет доступа");
     const [isLoading, setIsLoading] = useState(true)
 
+
+    const accessUser = checkAccess([ROLE.ADMIN], useSelector(selectUserRole))
 
     useLayoutEffect(() => {
         dispatch(RESET_POST_DATA);
@@ -26,6 +30,9 @@ const PageContainer = ({ className }) => {
 
     useEffect(() => {
         if (isCreating) {
+            if (accessUser) {
+                setError(false)
+            }
             dispatch(RESET_POST_DATA);
             setIsLoading(false)
             return;
@@ -41,6 +48,11 @@ const PageContainer = ({ className }) => {
     if (isLoading) {
         return null
     }
+
+    console.log("error", error)
+    console.log("isCreating", isCreating)
+    console.log("isEditing", isEditing)
+    console.log("error", error)
 
     return (error ? <Content error={error}/> : <div className={className}>
         {isCreating || isEditing ? (
