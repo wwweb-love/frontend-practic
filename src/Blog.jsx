@@ -7,6 +7,8 @@ import { useLayoutEffect } from "react"
 import { useDispatch } from "react-redux"
 import { setUser } from "./action"
 import { Modal } from "./components"
+import { ERROR } from "./constants/error"
+import { Content } from "./components"
 
 const AppColumn = styled.div`
   display: flex;
@@ -52,7 +54,7 @@ function Blog() {
           <Route path="/post/:id" element={<Post />}></Route>
           <Route path="/post/:id/edit" element={<Post />}></Route>
           <Route path="/post" element={<Post />}></Route>
-          <Route path="*" element={<h1>Error</h1>}></Route>
+          <Route path="*" element={<Content error={ERROR.PAGE_NOT_EXIST} />}></Route>
         </Routes>
       </Page>
       <Footer />
